@@ -5,8 +5,12 @@ description = "Connecting to Mushaf, one verse at a time :)"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "cryptography>=48.0.0",
     "fastapi[standard]>=0.136.1",
     "httpx>=0.28.1",
+    "psycopg[binary]>=3.3.4",
+    "pyjwt>=2.12.1",
     "python-dotenv>=1.2.2",
+    "sqlmodel>=0.0.38",
     "thefuzz>=0.22.1",
 ]
