@@ -12,5 +12,15 @@ services:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
+  backend:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:8500:8000"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
 volumes:
   postgres_data:
