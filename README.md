@@ -1,4 +1,4 @@
-![Mushaf Konnekt Logo](logo/MushafKonnektLogo.png){width=220px}
+<img src="logo/MushafKonnektLogo.png" alt="Mushaf Konnekt Logo" width="220" />
 
 # Mushaf Konnekt Backend
 
