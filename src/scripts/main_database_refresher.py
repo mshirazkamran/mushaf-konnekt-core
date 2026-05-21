@@ -2,6 +2,7 @@ import base64
 import os
 import sqlite3
 import sys
+import time
 
 import httpx
 from dotenv import load_dotenv
@@ -14,8 +15,8 @@ CLIENT_SECRET = os.environ.get("CLIENT_SECRET_PROD")
 BASE_URL = os.environ.get("PROD_API_ENDPOINT", None)
 AUTH_URL = os.environ.get("PROD_AUTH_ENDPOINT", None)
 
-DB_DIR = "db"
-DB_PATH = os.path.join(DB_DIR, "complete-quran.db")
+DB_DIR = os.path.join("src", "locked")
+DB_PATH = os.path.join(DB_DIR, "complete-quran-.db")
 
 # Translation target languages and preferred translators/slugs
 TARGET_MAPPING = {
@@ -124,6 +125,12 @@ def create_tables(conn):
         FOREIGN KEY (verse_id) REFERENCES verses(id)
     )""")
 
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS expires (
+        id INTEGER PRIMARY KEY CHECK (id = 1),
+        expires_at_ms INTEGER NOT NULL
+    )""")
+
     conn.commit()
     print("Tables created successfully.")
 
@@ -131,6 +138,9 @@ def create_tables(conn):
 def populate_database():
     if not os.path.exists(DB_DIR):
         os.makedirs(DB_DIR)
+
+    if os.path.exists(DB_PATH):
+        os.remove(DB_PATH)
 
     token = get_access_token()
     headers = {
@@ -141,6 +151,13 @@ def populate_database():
 
     conn = sqlite3.connect(DB_PATH)
     create_tables(conn)
+
+    expires_at_ms = int((time.time() + 6 * 24 * 60 * 60) * 1000)
+    conn.execute(
+        "INSERT OR REPLACE INTO expires (id, expires_at_ms) VALUES (1, ?)",
+        (expires_at_ms,),
+    )
+    conn.commit()
 
     # Crucial for SQLite as requested
     # conn.cursor().execute("PRAGMA foreign_keys = ON;")

@@ -13,3 +13,8 @@ wheels/
 .env.local
 .env.prod
 token.txt
+
+context.md
+frontend_guide.md
+endpoints.md
+okokok.zip

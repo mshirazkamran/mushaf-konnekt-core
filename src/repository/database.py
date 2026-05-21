@@ -13,7 +13,7 @@ DATABASE_URL = os.environ.get("DATABASE_URL", None)
 if DATABASE_URL is None:
     raise RuntimeError("DATABASE_URL IS NONE, CONFIGURE THE ENV PROPERLY!! ")
 
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL, echo=False)
 
 
 def create_db_and_tables():

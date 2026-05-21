@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session
 from pydantic import BaseModel
 from src.repository.database import get_session
 from src.repository.models import User
-from src.services.qf_oauth import exchange_code_for_tokens, refresh_access_token, QFTokenResponse
+from src.services.qf_oauth import exchange_code_for_tokens, refresh_access_token
 
 import time
 import secrets
