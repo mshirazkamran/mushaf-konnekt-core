@@ -3,7 +3,9 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 
-router = APIRouter(prefix="/qf-proxy/content/adfn87dssf/data", tags=["qf-proxy-content"])
+router = APIRouter(
+    prefix="/qf-proxy/content/adfn87dssf/data", tags=["qf-proxy-content"]
+)
 
 STATIC_DIR = Path(__file__).resolve().parents[1] / "static"
 
