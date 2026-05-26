@@ -11,7 +11,7 @@
 
 Mushaf Konnekt is an offline-first Quranic reading and speech-recognition companion designed for mobile platforms (Android). By combining advanced on-device Automatic Speech Recognition (ASR), local fuzzy-string matching, local database caching with integrity checks, and cloud-synchronized user accounts, the app provides a premium, responsive, and seamless spiritual experience.
 
-This document outlines the product features, user guide, UI structure, design patterns, and synchronization workflows for both technical and non-technical stakeholders in a tech firm.
+This document outlines the product features, user guide, UI structure, design patterns, and synchronization workflows for both technical and non-technical stakeholders.
 
 ---
 
