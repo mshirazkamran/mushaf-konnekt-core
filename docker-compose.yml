@@ -21,6 +21,9 @@ services:
     depends_on:
       - postgres
     restart: unless-stopped
+    volumes:
+      - ./src/static:/app/src/static
+
 
 volumes:
   postgres_data:
